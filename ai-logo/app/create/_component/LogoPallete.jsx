@@ -1,6 +1,7 @@
 import React from 'react'
 import Lookup from '@/app/_data/Lookup'
 import Colors from '@/app/_data/Colors'
+import HeadingDescription from './HeadingDescription'
 
 
 function LogoPallete() {
@@ -10,10 +11,21 @@ function LogoPallete() {
         title={Lookup.LogoColorPaletteTitle}
         description={Lookup.LogoColorPaletteDesc}/>
 
-        <div className='grid grid-cols-3 gap-4'>
+        <div>
 
           {Colors.map((palette, index)=>(
-            
+            <div>
+              {palette?.colors.map((color,index)=>(
+                <div className='h-24 w-full'
+                key={index}
+                style={{
+                  backgroundColor: color
+                }}
+                >
+
+                </div>
+              ))}
+            </div>
           ))}
         </div>
     </div>
