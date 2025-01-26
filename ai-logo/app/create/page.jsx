@@ -36,8 +36,8 @@ function CreateLogo() {
         <LogoDesigns onHandleInputChange={(v)=>onHandleInputChange('designs',v)}
         formData={formData}/>:
         step==5?
-        <LogoIdea onHandleInputChange={(v)=>onHandleInputChange('idea',v)}
-        formData={formData}/>:
+        <LogoIdea formData={formData} onHandleInputChange={(v)=>onHandleInputChange('idea',v)}
+        />:
         null
         }
 

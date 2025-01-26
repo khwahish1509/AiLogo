@@ -5,7 +5,18 @@ import LogoDesig from '@/app/_data/LogoDesig'
 import Image from 'next/image'
 
 function LogoDesigns({onHandleInputChange, formData}) {
-  const [selectedOption, setSelectedOption] = useState(formData?.design?.title);
+  const [selectedOption, setSelectedOption] = useState(formData?.designs?.title);
+
+  // const handleSelection = (design) => {
+  //   setSelectedOption(design.title);
+  //   onHandleInputChange({
+  //     ...formData,
+  //     design: {
+  //       ...design,
+  //     },
+  //   });
+  // };
+  
   return (
     <div className='my-10'>
       <HeadingDescription
@@ -25,6 +36,9 @@ function LogoDesigns({onHandleInputChange, formData}) {
              height={200}
              className='w-full rounded-xl h-[150px] object-cover'/>
 
+            <p className="text-center text-sm mt-2 font-medium">
+              {design.title}
+            </p>
            
          </div>
         )}
