@@ -12,13 +12,14 @@ function LogoDesigns() {
       description={Lookup.LogoDesignDesc}
       />
 
-      <div>
+      <div className='grid grid-cols-2 md:grid-cols-3 gap-10 mt-10'>
         {LogoDesig.map((design, index)=>
          <div key={index}>
             <Image src={design.image} alt={design.title} width={300}
-             height={200}>
+             height={200}
+             className='w-full rounded-xl h-[150px] object-cover'/>
 
-            </Image>
+           
          </div>
         )}
       </div>
