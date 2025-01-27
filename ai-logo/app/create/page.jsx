@@ -4,7 +4,7 @@ import LogoTitle from './_component/LogoTitle'
 import { Button } from "@/components/ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid';
 import LogoDesc from './_component/LogoDesc';
-import LogoPallete from './_component/LogoPallete';
+import LogoPalette from './_component/LogoPalette';
 import LogoDesigns from './_component/LogoDesigns';
 import LogoIdea from './_component/LogoIdea';
 
@@ -30,7 +30,7 @@ function CreateLogo() {
         <LogoDesc onHandleInputChange={(v)=>onHandleInputChange('desc',v)}
         formData={formData}/>:
         step==3?
-        <LogoPallete onHandleInputChange={(v)=>onHandleInputChange('palette',v)}
+        <LogoPalette onHandleInputChange={(v)=>onHandleInputChange('palette',v)}
         formData={formData}/>:
         step==4?
         <LogoDesigns onHandleInputChange={(v)=>onHandleInputChange('designs',v)}
