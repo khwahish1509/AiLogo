@@ -1,4 +1,4 @@
-import React , {useEffect} from 'react'
+import React , {useEffect, useState} from 'react'
 import HeadingDescription from './HeadingDescription'
 import Lookup from '@/app/_data/Lookup'
 import Prompt from '@/app/_data/Prompt'
@@ -6,33 +6,35 @@ import axios from 'axios'
 
 function LogoIdea({formData}) {
 
+  const [ideas,setIdeas]=useState();
+  const [loading,setLoading]=useState(false);
+  const [selectedOption,setSelectedOption]=useState(formData?.idea);
+
   useEffect(()=>{
     generateLogoDesignIdea();
   },[])
 
-  const generateLogoDesignIdea = async () => {
-    if (!formData || !formData.designs) {
-      console.error("formData or designs is missing");
-      return;
-    }
-  
-    const PROMPT = Prompt.DESIGN_IDEA_PROMPT
-      .replace('{logoType}', formData?.designs?.title || 'Unknown Type')
-      .replace('{logoTitle}', formData?.title || 'Unknown Title')
-      .replace('{logoDesc}', formData?.desc || 'No Description')
-      .replace('{logoPrompt}', formData?.designs?.prompt || '');
-  
-    try {
-      const result = await axios.post('/api/ai-design-ideas', {
-        prompt: PROMPT,
-      });
-  
-      console.log(result.data);
-    } catch (error) {
-      console.error("Error generating design ideas:", error);
-    }
-  };
-  
+  const generateLogoDesignIdea=async()=>{
+   
+    setLoading(true)
+
+    const PROMPT=Prompt.DESIGN_IDEA_PROMPT
+    .replace('{logoType}',formData?.designs.title)
+    .replace('{logoTitle}',formData.title)
+    .replace('{logoDesc}',formData.desc)
+    .replace('{logoPrompt}',formData.designs.prompt)
+
+    // console.log(PROMPT);
+    const result=await axios.post('/api/ai-design-ideas',{
+      prompt:PROMPT
+    })
+
+    console.log(result.data)
+    setIdeas(result.data.ideas);
+    setLoading(false);
+
+
+  }
 
 
 
@@ -42,6 +44,25 @@ function LogoIdea({formData}) {
       title={Lookup. LogoIdeaTitle}
       description={Lookup.LogoIdeaDesc}
       />
+    <div className='flex flex-wrap gap-3 mt-6'>
+      {ideas&&ideas.map((item,index)=>(
+        <h2 key={index}
+        onClick={()=>{setSelectedOption(item);
+          onHandleInputChange(item)
+        }}
+        className={`p-2 rounded-full border px-3 cursor-pointer
+          hover:border-primary ${selectedOption==item&&'border-primary'}`}
+        >{item}</h2>
+      ))}
+
+      <h2 
+       onClick={()=>{setSelectedOption('Let AI Select the best idea');
+        onHandleInputChange('Let AI Select the best idea')
+      }}
+      className={`p-2 rounded-full border px-3 cursor-pointer
+          hover:border-primary ${selectedOption=='Let AI Select the best idea'&&'border-primary'}`}>Let AI Select the best idea</h2>
+    </div>
+
     </div>
   )
 }
