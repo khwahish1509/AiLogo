@@ -10,22 +10,29 @@ function LogoIdea({formData}) {
     generateLogoDesignIdea();
   },[])
 
-  const generateLogoDesignIdea=async()=>{
-   
-    const PROMPT=Prompt.DESIGN_IDEA_PROMPT
-    .replace('{logoType}',formData?.designs.title)
-    .replace('{logoTitle}',formData.title)
-    .replace('{logoDesc}',formData.desc)
-    .replace('{logoPrompt}',formData.designs.prompt)
-
-    // console.log(PROMPT);
-    const result=await axios.post('/api/ai-design-ideas',{
-      prompt:PROMPT
-    })
-
-    console.log(result.data)
-
-  }
+  const generateLogoDesignIdea = async () => {
+    if (!formData || !formData.designs) {
+      console.error("formData or designs is missing");
+      return;
+    }
+  
+    const PROMPT = Prompt.DESIGN_IDEA_PROMPT
+      .replace('{logoType}', formData?.designs?.title || 'Unknown Type')
+      .replace('{logoTitle}', formData?.title || 'Unknown Title')
+      .replace('{logoDesc}', formData?.desc || 'No Description')
+      .replace('{logoPrompt}', formData?.designs?.prompt || '');
+  
+    try {
+      const result = await axios.post('/api/ai-design-ideas', {
+        prompt: PROMPT,
+      });
+  
+      console.log(result.data);
+    } catch (error) {
+      console.error("Error generating design ideas:", error);
+    }
+  };
+  
 
 
 
