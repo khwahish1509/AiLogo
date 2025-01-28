@@ -3,8 +3,10 @@ import HeadingDescription from './HeadingDescription'
 import Lookup from '@/app/_data/Lookup'
 import Prompt from '@/app/_data/Prompt'
 import axios from 'axios'
+import { Loader2Icon } from 'lucide-react'
 
-function LogoIdea({formData}) {
+
+function LogoIdea({formData, onHandleInputChange}) {
 
   const [ideas,setIdeas]=useState();
   const [loading,setLoading]=useState(false);
@@ -41,9 +43,12 @@ function LogoIdea({formData}) {
   return (
     <div className='my-10'>
       <HeadingDescription
-      title={Lookup. LogoIdeaTitle}
+      title={Lookup.LogoIdeaTitle}
       description={Lookup.LogoIdeaDesc}
       />
+    <div className='flex items-center justify-center'>
+    {loading&&<Loader2Icon className='animate-spin my-10' />}
+    </div>
     <div className='flex flex-wrap gap-3 mt-6'>
       {ideas&&ideas.map((item,index)=>(
         <h2 key={index}
@@ -54,7 +59,6 @@ function LogoIdea({formData}) {
           hover:border-primary ${selectedOption==item&&'border-primary'}`}
         >{item}</h2>
       ))}
-
       <h2 
        onClick={()=>{setSelectedOption('Let AI Select the best idea');
         onHandleInputChange('Let AI Select the best idea')
@@ -62,9 +66,8 @@ function LogoIdea({formData}) {
       className={`p-2 rounded-full border px-3 cursor-pointer
           hover:border-primary ${selectedOption=='Let AI Select the best idea'&&'border-primary'}`}>Let AI Select the best idea</h2>
     </div>
-
     </div>
+    
   )
 }
-
 export default LogoIdea
