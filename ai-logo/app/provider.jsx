@@ -2,6 +2,23 @@ import React from 'react'
 import Header from './_components/Header'
 
 function Provider({children}) {
+
+  // const {user}=useUser();
+  // const [userDetail,setUserDetail]=useState();
+  // useEffect(()=>{
+  //   user&&CheckUserAuth();
+  // },[user])
+
+  //Save user data
+  const CheckUserAuth=async()=>{
+    //Save User to Database
+    const result=await axios.post('/api/users',{
+      userName:user?.fullName,
+      userEmail:user?.primaryEmailAddress?.emailAddress
+    });
+    console.log(result.data);
+    setUserDetail(result.data);
+  }
   return (
     <div>
         <Header/>
