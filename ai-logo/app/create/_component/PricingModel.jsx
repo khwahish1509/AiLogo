@@ -1,11 +1,22 @@
-import React from 'react'
+"use client"
+import React, { useEffect } from 'react'
 import HeadingDescription from './HeadingDescription'
 import Lookup from '@/app/_data/Lookup'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 
-export const PricingModel = () => {
+export const PricingModel = ({formData}) => {
+
+    useEffect(()=>{
+        if(formData?.title && typeof window!=='undefined')
+        {
+            localStorage.setItem('formData',JSON.stringify(formData))
+        }
+
+    },[formData])
   return (
+
+    
     <div>
         <HeadingDescription
         title={Lookup.LogoPricingModelTitle}
