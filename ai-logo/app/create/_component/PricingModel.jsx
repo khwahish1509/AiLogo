@@ -4,8 +4,13 @@ import HeadingDescription from './HeadingDescription'
 import Lookup from '@/app/_data/Lookup'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import { SignInButton, useUser } from '@clerk/nextjs'
+import Link from 'next/link'
+
 
 export const PricingModel = ({formData}) => {
+
+    const {user}=useUser();
 
     useEffect(()=>{
         if(formData?.title && typeof window!=='undefined')
@@ -37,15 +42,14 @@ export const PricingModel = ({formData}) => {
                             <h2 className='text-lg mt-3' key={index}>{feature}</h2>
                         ))}
                     </div>
-                    <Button className="mt-5" >{pricing.button}</Button>
-                    {/* {user?
+                    {user?
                     <Link href={'/generate-logo?type='+pricing.title}>
                     <Button className="mt-5" >{pricing.button}</Button>
                     </Link>
                     :<SignInButton mode='modal' forceRedirectUrl={'/generate-logo?type='+pricing.title}>
                          <Button className="mt-5">{pricing.button}</Button>
                     </SignInButton>
-                    } */}
+                    }
                 </div>
             ))}
         </div>
