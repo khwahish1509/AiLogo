@@ -1,13 +1,17 @@
-import React from 'react'
+"use client"
+import React, { Suspense, useEffect, useState } from 'react'
 import Header from './_components/Header'
+import axios from 'axios'
+import { useUser } from '@clerk/nextjs'
+// import { UserDetailContex } from './_context/UserDetailContext'
 
 function Provider({children}) {
 
-  // const {user}=useUser();
-  // const [userDetail,setUserDetail]=useState();
-  // useEffect(()=>{
-  //   user&&CheckUserAuth();
-  // },[user])
+  const {user}=useUser();
+  const [userDetail,setUserDetail]=useState();
+  useEffect(()=>{
+    user&&CheckUserAuth();
+  },[user])
 
   //Save user data
   const CheckUserAuth=async()=>{
@@ -19,14 +23,18 @@ function Provider({children}) {
     console.log(result.data);
     setUserDetail(result.data);
   }
-  return (
-    <div>
-        <Header/>
-        <div className='px-10 lg:px-32 xl:px-48 2xl:px-56 p-4'>
-         {children}
 
+  return (
+    <Suspense>
+    <div>
+        
+        <Header/>
+        <div className='px-10 lg:px-32 xl:px-48 2xl:px-56'>
+            {children}
         </div>
+       
     </div>
+    </Suspense>
   )
 }
 
