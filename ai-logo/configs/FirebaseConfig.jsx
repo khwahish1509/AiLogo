@@ -11,6 +11,7 @@ import { getAnalytics } from "firebase/analytics";
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "ailogo-76470.firebaseapp.com",
+  databaseURL: "https://ailogo-76470-default-rtdb.firebaseio.com",
   projectId: "ailogo-76470",
   storageBucket: "ailogo-76470.firebasestorage.app",
   messagingSenderId: "678763426635",

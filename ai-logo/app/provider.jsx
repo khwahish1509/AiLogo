@@ -25,7 +25,7 @@ function Provider({children}) {
   }
 
   return (
-    <Suspense>
+    
     <div>
         
         <Header/>
@@ -34,7 +34,7 @@ function Provider({children}) {
         </div>
        
     </div>
-    </Suspense>
+    
   )
 }
 
