@@ -10,13 +10,12 @@ import { getAnalytics } from "firebase/analytics";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: "ailogo-76470.firebaseapp.com",
-  databaseURL: "https://ailogo-76470-default-rtdb.firebaseio.com",
-  projectId: "ailogo-76470",
-  storageBucket: "ailogo-76470.firebasestorage.app",
-  messagingSenderId: "678763426635",
-  appId: "1:678763426635:web:edb2e9bab530738287eece",
-  measurementId: "G-2QCQB9S8ZL"
+  authDomain: "logoai-5a578.firebaseapp.com",
+  projectId: "logoai-5a578",
+  storageBucket: "logoai-5a578.firebasestorage.app",
+  messagingSenderId: "252517866346",
+  appId: "1:252517866346:web:b53d651e91781f0f48a313",
+  measurementId: "G-0KSED78R14"
 };
 
 // Initialize Firebase

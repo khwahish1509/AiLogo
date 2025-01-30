@@ -3,6 +3,7 @@ import React, { Suspense, useEffect, useState } from 'react'
 import Header from './_components/Header'
 import axios from 'axios'
 import { useUser } from '@clerk/nextjs'
+import { UserDetailContex } from './_context/UserDetailContext'
 // import { UserDetailContex } from './_context/UserDetailContext'
 
 function Provider({children}) {
@@ -27,11 +28,12 @@ function Provider({children}) {
   return (
     
     <div>
-        
+        <UserDetailContex.Provider value={{userDetail,setUserDetail}}>
         <Header/>
         <div className='px-10 lg:px-32 xl:px-48 2xl:px-56'>
             {children}
         </div>
+        </UserDetailContex.Provider>
        
     </div>
     
