@@ -8,6 +8,8 @@ import axios from 'axios';
 function GenerateLogo() {
   const {userDetail,setUserDetail}=useContext(UserDetailContex);
   const [formData,setFormData]=useState();
+  const [loading,setLoading]=useState(false);
+  const [logoImage,setLogoImage]=useState();
 
 
 
@@ -38,7 +40,7 @@ function GenerateLogo() {
     //     return ;
     // }
 
-    // setLoading(true);
+    setLoading(true);
     const PROMPT=Prompt.LOGO_PROMPT
     .replace('{logoTitle}',formData?.title)
     .replace('{logoDesc}',formData?.desc)
@@ -49,24 +51,23 @@ function GenerateLogo() {
 
     console.log(PROMPT);
 
-    const result= await axios.post('/api/ai-logo-model',{
-      prompt:PROMPT,
-    });
 
-    console.log(result?.data);
+
+
     // //Generate Logo Prompt from AI
     // //Generate Logo Image
-    // const result=await axios.post('/api/ai-logo-model',{
-    //   prompt:PROMPT,
-    //   email:userDetail?.email,
-    //   title:formData.title,
-    //   desc:formData.desc,
+    const result=await axios.post('/api/ai-logo-model',{
+      prompt:PROMPT,
+      email:userDetail?.email,
+      title:formData.title,
+      desc:formData.desc,
     //   type:modelType,
     //   userCredits:userDetail?.credits
-    // });
+    });
    
-    // setLogoImage(result.data?.image)
-    // setLoading(false);
+    setLogoImage(result.data?.image)
+    setLoading(false);
+    console.log(result?.data);
    
   }
 
