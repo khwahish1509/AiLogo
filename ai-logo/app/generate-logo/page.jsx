@@ -49,6 +49,11 @@ function GenerateLogo() {
 
     console.log(PROMPT);
 
+    const result= await axios.post('/api/ai-logo-model',{
+      prompt:PROMPT,
+    });
+
+    console.log(result?.data);
     // //Generate Logo Prompt from AI
     // //Generate Logo Image
     // const result=await axios.post('/api/ai-logo-model',{
