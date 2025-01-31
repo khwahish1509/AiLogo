@@ -40,7 +40,7 @@ function GenerateLogo() {
     //     return ;
     // }
 
-    setLoading(true);
+    setLoading(true
     const PROMPT=Prompt.LOGO_PROMPT
     .replace('{logoTitle}',formData?.title)
     .replace('{logoDesc}',formData?.desc)
