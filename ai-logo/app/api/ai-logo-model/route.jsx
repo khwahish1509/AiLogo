@@ -52,10 +52,10 @@ export async function POST(req) {
 
           base64ImageWithMime=await ConvertImageToBase64(output);
 
-        //   const docRef=doc(db,'users',email)
-        //   await updateDoc(docRef,{
-        //     credits:Number(userCredits)-1
-        //   })
+          const docRef=doc(db,'users',email)
+          await updateDoc(docRef,{
+            credits:Number(userCredits)-1
+          })
     }
 
         
