@@ -1,11 +1,15 @@
 import { AILogoPrompt } from "@/configs/AiModel";
 import axios from "axios";
 import { NextResponse } from "next/server";
+import Replicate from "replicate";
 
 export async function POST(req) {
     
     const { prompt,email,title,desc,type,userCredits } = await req.json();
     let base64ImageWithMime='';
+    const replicate = new Replicate({
+        auth: process.env.REPLICATE_API_TOKEN,
+      });
     try {
         const AiPromptResult = await AILogoPrompt.sendMessage(prompt);
         console.log(JSON.parse(AiPromptResult.response.text()).prompt);
@@ -29,13 +33,13 @@ export async function POST(req) {
         // console.log(base64ImageWithMine)
         base64ImageWithMime = `data:image/png;base64,${base64Image}`;
     }else{
-
+        
     }
 
         
       
-        console.log(base64ImageWithMime);
-        return NextResponse.json({ image: base64ImageWithMime });
+        // console.log(base64ImageWithMime);
+        // return NextResponse.json({ image: base64ImageWithMime });
 
         //save to Firebase Databse
         
@@ -51,7 +55,7 @@ export async function POST(req) {
         {
             console.log(e)
         }
-        // return NextResponse.json({image:base64ImageWithMime})
+        return NextResponse.json({image:base64ImageWithMime})
         
         
     } catch (e) {
