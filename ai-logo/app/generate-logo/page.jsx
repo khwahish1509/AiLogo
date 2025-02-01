@@ -40,7 +40,7 @@ function GenerateLogo() {
     //     return ;
     // }
 
-    // setLoading(true);
+    setLoading(true);
     const PROMPT=Prompt.LOGO_PROMPT
     .replace('{logoTitle}',formData?.title)
     .replace('{logoDesc}',formData?.desc)
@@ -51,31 +51,31 @@ function GenerateLogo() {
 
     console.log(PROMPT);
 
-    try {
-      const result = await axios.post('/api/ai-logo-model', {
-        prompt: PROMPT
-      });
-    console.log(result?.data);
+    // try {
+    //   const result = await axios.post('/api/ai-logo-model', {
+    //     prompt: PROMPT
+    //   });
+    // console.log(result?.data);
 
-    } catch (error) {
-      console.log('Error generating logo:', error.message);
-      console.log('Response data:', error.response?.data);
-    }
+    // } catch (error) {
+    //   console.log('Error generating logo:', error.message);
+    //   console.log('Response data:', error.response?.data);
+    // }
 
 
     // // //Generate Logo Prompt from AI
     // // //Generate Logo Image
-    // const result=await axios.post('/api/ai-logo-model',{
-    //   prompt:PROMPT,
-    //   // email:userDetail?.email,
-    //   // title:formData.title,
-    //   // desc:formData.desc,
-    // //   type:modelType,
-    // //   userCredits:userDetail?.credits
-    // });
+    const result=await axios.post('/api/ai-logo-model',{
+      prompt:PROMPT,
+      email:userDetail?.email,
+      title:formData.title,
+      desc:formData.desc,
+      // type:modelType,
+      // userCredits:userDetail?.credits
+    });
    
     // // setLogoImage(result.data?.image)
-    // // setLoading(false);
+    setLoading(false);
     // console.log(result?.data);
    
   }
