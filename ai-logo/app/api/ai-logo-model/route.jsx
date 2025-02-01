@@ -1,8 +1,9 @@
 import { AILogoPrompt } from "@/configs/AiModel";
+import { db } from "@/configs/FirebaseConfig";
 import axios from "axios";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
 import Replicate from "replicate";
-
 export async function POST(req) {
     
     const { prompt,email,title,desc,type,userCredits } = await req.json();
@@ -33,7 +34,28 @@ export async function POST(req) {
         // console.log(base64ImageWithMine)
         base64ImageWithMime = `data:image/png;base64,${base64Image}`;
     }else{
-        
+        const output = await replicate.run(
+            "bytedance/hyper-flux-8step:81946b1e09b256c543b35f37333a30d0d02ee2cd8c4f77cd915873a1ca622bad",
+            {
+              input: {
+                prompt:AIPrompt,
+                num_outputs: 1,
+                aspect_ratio: "1:1",
+                output_format: "png",
+                guidance_scale: 3.5,
+                output_quality: 80,
+                num_inference_steps: 8
+              }
+            }
+          );
+          console.log(output);
+
+          base64ImageWithMime=await ConvertImageToBase64(output);
+
+        //   const docRef=doc(db,'users',email)
+        //   await updateDoc(docRef,{
+        //     credits:Number(userCredits)-1
+        //   })
     }
 
         
@@ -63,4 +85,13 @@ export async function POST(req) {
         
     }
 
+}
+
+async function ConvertImageToBase64(image) {
+    const resp=await axios.get(image, {
+        responseType: 'arraybuffer'
+    });
+    const base64ImageRaw=Buffer.from(resp.data).toString('base64');
+    return `data:image/jpeg;base64,${base64ImageRaw}`;
+    
 }
