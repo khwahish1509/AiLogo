@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { DownloadIcon, LayoutDashboard, LoaderIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useSearchParams } from 'next/navigation';
-// import { toast } from 'sonner';
+import { toast } from 'sonner';
 import Link from 'next/link';
 
 function GenerateLogo() {
