@@ -1,8 +1,16 @@
 "use client"
 import React, { useContext, useEffect, useState } from 'react'
-import { UserDetailContex } from '../_context/UserDetailContext';
+import { UserDetailContex } from '../_context/UserDetailContext'
+// import Lookup from '../_data/Lookup';
 import Prompt from '../_data/Prompt';
 import axios from 'axios';
+import Image from 'next/image';
+// import { DownloadIcon, LayoutDashboard, LoaderIcon } from 'lucide-react';
+// import { Button } from '@/components/ui/button';
+// import { useSearchParams } from 'next/navigation';
+// import { toast } from 'sonner';
+// import Link from 'next/link';
+
 
 
 function GenerateLogo() {
@@ -73,15 +81,21 @@ function GenerateLogo() {
       // type:modelType,
       // userCredits:userDetail?.credits
     });
+
+    console.log(result?.data);
    
-    // // setLogoImage(result.data?.image)
+    setLogoImage(result.data?.image)
     setLoading(false);
-    // console.log(result?.data);
    
   }
 
   return (
-    <div>GenerateLogo</div>
+    <div>
+      <h2>{loading && "Loading..."}</h2>
+      {!loading && logoImage && (
+      <Image src={logoImage} alt="logo" width={200} height={200} />
+      )}
+    </div>
   )
 }
 
