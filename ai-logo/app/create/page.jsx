@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import LogoTitle from './_component/LogoTitle'
 import { Button } from "@/components/ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid';
@@ -23,6 +23,7 @@ function CreateLogo() {
       console.log(formData);
     }
   return (
+    <Suspense>
     <div className='mt-28 p-10 border rounded-xl 2xl:mx-72'>
         {step==1?
         <LogoTitle onHandleInputChange={(v)=>onHandleInputChange('title',v)}
@@ -53,6 +54,7 @@ function CreateLogo() {
             <Button onClick={() =>setStep(step+1)}> <ArrowRightIcon/> Continue</Button>
         </div>
     </div>
+    </Suspense>
   )
 }
 
