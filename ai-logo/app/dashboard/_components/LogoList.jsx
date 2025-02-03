@@ -18,9 +18,10 @@ function LogoList() {
        setLogoList([]);
         querySnapshot.forEach((doc)=>{
             console.log(doc.data());
+            // Add logo to logoList array only if userCredits are enough
             setLogoList(prev=>[...prev,doc.data()])
         })
-    }
+    } 
 
     const ViewLogo=(image)=>{
         const imageWindow = window.open();
