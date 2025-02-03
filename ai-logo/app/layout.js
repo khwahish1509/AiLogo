@@ -19,18 +19,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+    // <ClerkProvider>
     <html lang="en">
       <body
       className={poppins.className}
 
       >
-        <Provider>
         {children}
-        </Provider>
-        <Toaster/>
+        
+        <Toaster />
       </body>
     </html>
-    </ClerkProvider>
   );
 }
