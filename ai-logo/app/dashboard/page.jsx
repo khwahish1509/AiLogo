@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, {useContext} from 'react'
 // import Info from './_components/Info'
 import { UserDetailContext } from "../provider";  // ✅ Import Provider
 import LogoList from './_components/LogoList'
