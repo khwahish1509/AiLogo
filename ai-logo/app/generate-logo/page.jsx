@@ -1,6 +1,7 @@
 "use client"
 import React, { Suspense, useContext, useEffect, useState } from 'react'
-import { UserDetailContex } from '../_context/UserDetailContext'
+// import { UserDetailContext } from '../_context/UserDetailContext'
+import { UserDetailContext } from "../provider"; // ✅ Correct Import
 import Lookup from '../_data/Lookup';
 import Prompt from '../_data/Prompt';
 import axios from 'axios';
@@ -12,7 +13,7 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 
 function GenerateLogo() {
-  const {userDetail,setUserDetail}=useContext(UserDetailContex);
+  const {userDetail,setUserDetail}=useContext(UserDetailContext);
   const [formData,setFormData]=useState();
   const [loading,setLoading]=useState(false);
   const [logoImage,setLogoImage]=useState();

@@ -1,8 +1,11 @@
-"use client"
-import React, { useEffect, useState } from 'react';
+"use client";
+import React, { useEffect, useState, createContext, useContext } from 'react';
 import Header from './_components/Header';
 import axios from 'axios';
 import { useUser } from '@clerk/nextjs';
+
+// ✅ Create Context
+export const UserDetailContext = createContext(null);
 
 function Provider({ children }) {
   const { user } = useUser();
@@ -26,12 +29,13 @@ function Provider({ children }) {
   }, [user]);
 
   return (
-    <div>
+    <UserDetailContext.Provider value={{ userDetail, setUserDetail }}> 
+    {/* ✅ Wrap with Context */}
       <Header />
       <div className='px-10 lg:px-32 xl:px-48 2xl:px-56'>
         {children}
       </div>
-    </div>
+    </UserDetailContext.Provider>
   );
 }
 
