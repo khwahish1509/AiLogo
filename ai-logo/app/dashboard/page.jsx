@@ -1,14 +1,9 @@
-"use client"
-import React, {useContext} from 'react'
-// import Info from './_components/Info'
-import { UserDetailContext } from "../provider";  // ✅ Import Provider
-import LogoList from './_components/LogoList'
+import React from 'react'
 import Info from './_components/Info'
+import LogoList from './_components/LogoList'
 
 function Dashboard() {
-  const { userDetail } = useContext(UserDetailContext) || {};
   return (
-    
     <div className='mt-20'>
         <Info/>
 
