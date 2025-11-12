@@ -1,12 +1,37 @@
 {
-  "name": "ai-logo",
+  "name": "ai-logo-maker",
   "version": "0.1.0",
   "private": true,
+  "description": "An intelligent logo generation platform powered by AI",
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ai-logo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/ai-logo/issues"
+  },
+  "homepage": "https://github.com/yourusername/ai-logo#readme",
+  "keywords": [
+    "ai",
+    "logo",
+    "generator",
+    "design",
+    "nextjs",
+    "react",
+    "gemini",
+    "firebase",
+    "tailwind"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.10.3",
