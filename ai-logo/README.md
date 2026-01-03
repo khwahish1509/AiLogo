@@ -290,7 +290,7 @@ Project Link: [https://github.com/yourusername/ai-logo](https://github.com/youru
 
 <div align="center">
 
-**Made with ❤️ for MLH Fellowship**
+**Made with ❤️**
 
 ⭐ Star this repo if you find it helpful!
 
